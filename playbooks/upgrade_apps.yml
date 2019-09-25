@@ -1,4 +1,4 @@
-- hosts: appservers
+- hosts: app1
   become: yes
   serial: 1 # all hosts in groups will be handled one by one
   vars:
