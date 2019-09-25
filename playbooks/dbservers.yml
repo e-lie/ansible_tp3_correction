@@ -1,7 +1,6 @@
-- hosts: appservers
+---
+- hosts: dbservers
   become: yes
 
-
   roles:
-    - geerlingguy.firewall
-    - flaskapp
+    - geerlingguy.mysql

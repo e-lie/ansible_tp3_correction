@@ -6,10 +6,10 @@
     - name: setup linux container for the infrastructure simulation
       lxd_container:
         name: "{{ item }}"
-        state: "{{ hostvars[item]['node_state'] }}"
+        state: "{{ hostvars[item].node_state }}"
         source:
           type: image
-          alias: "{{ hostvars[item]['container_image'] }}"
+          alias: "{{ hostvars[item].container_image }}"
         profiles: ["default"]
         config:
           security.nesting: 'true' 
@@ -38,5 +38,5 @@
         path: /etc/hosts
         regexp: ".*{{ item }}$"
         line: "{{ hostvars[item].ansible_host }}    {{ item }}"
-        state: "present"
+        state: "{{ 'absent' if hostvars[item].node_state == 'absent' else 'present' }}"
       loop: "{{ groups['all'] }}"

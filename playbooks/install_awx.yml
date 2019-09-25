@@ -1,0 +1,12 @@
+- hosts: awx
+  become: yes
+
+  pre_tasks:
+    - name: ensure gpg present
+      apt:
+        name: gpg
+        state: present
+        
+  roles:
+    - geerlingguy.docker
+    - simple_awx
