@@ -1,2 +1,3 @@
 ---
 haproxy_backend_balance_method: 'leastconn'
+ansible_python_interpreter: '/usr/bin/python'

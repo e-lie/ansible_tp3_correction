@@ -1,8 +1,6 @@
 - hosts: app1
   become: yes
   serial: 1 # all hosts in groups will be handled one by one
-  vars:
-    flask_upgrade_apps: yes
     
   pre_tasks:
     - name: Disable the server to upgrade from HAProxy.
@@ -11,12 +9,12 @@
         host: '{{ inventory_hostname }}'
         socket: /var/lib/haproxy/stats
         backend: habackend
-      delegate_to: balancer
+      delegate_to: balancer1
 
   roles:
     - role: flaskapp
       vars:
-        upgrade_apps: yes
+        flask_upgrade_apps: yes
 
   post_tasks:
     - name: Wait for backend to come back up.
@@ -32,7 +30,6 @@
         host: '{{ inventory_hostname }}'
         socket: /var/lib/haproxy/stats
         backend: habackend
-      delegate_to: balancer
-      loop: "{{ groups.balancers }}"
+      delegate_to: balancer1
 
 
