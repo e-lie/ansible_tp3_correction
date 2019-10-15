@@ -5,9 +5,9 @@
   # vars:
     # haproxy_backend_servers:
       # - name: app1
-      #   address: 10.164.210.121:80
+      #   address: 10.x.y.121:80
       # - name: app2
-      #   address: 10.164.210.122:80
+      #   address: 10.x.y.122:80
 
   pre_tasks:
 
